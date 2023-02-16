@@ -46,7 +46,12 @@ h1, h2, h3{
   border-radius:10px;
   cursor: pointer;
 }
-
+.categories__content{
+  display:grid;
+  grid-template-columns:  auto auto;
+  column-gap: 3rem;
+  justify-content:center;
+}
 footer{
   display: flex;
   align-items: center;

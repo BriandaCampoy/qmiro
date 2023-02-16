@@ -5,16 +5,22 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SlideMovies from '../../components/slideMovies';
 import moviesServices from '../../services/moviesServices';
 import { useEffect, useState } from 'react';
+import Category from '../../components/category';
 //  import { API_KEY } from '../../services/moviesServices';
 
 function Home() {
 
   const [movies, setMovies] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
     moviesServices.getTrendingMovies()
     .then((response)=>{
       setMovies(response.results)
+    })
+    moviesServices.getCategories()
+    .then((response)=>{
+      setCategories(response.genres)
     })
   },[])
 
@@ -48,6 +54,9 @@ function Home() {
           <h3>Categories</h3>
           <div className="categories__content">
             {/* categories list */}
+            {categories?.map((category) => (
+              <Category category={category} key={category.id}/>
+            ))}
           </div>
         </section>
       </main>

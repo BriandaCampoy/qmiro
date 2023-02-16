@@ -1,6 +1,6 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import GradeIcon from '@mui/icons-material/Grade';
-import Categorie from '../../components/categories';
+import Category from '../../components/category';
 import SlideMovies from '../../components/slideMovies';
 import './style.css';
 
@@ -17,7 +17,7 @@ function Movie() {
       </div>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex placeat cumque dignissimos nemo iste.</p>
       <div className="movieDetails__categories">
-        <Categorie/>
+        <Category/>
       </div>
       </div>
     </div>

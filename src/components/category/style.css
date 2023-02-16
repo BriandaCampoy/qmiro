@@ -1,0 +1,32 @@
+.category__color{
+  width:24px;
+  height: 24px;
+  /* background-color: red; */
+  border-radius:10px;
+}
+.category__block{
+  display:flex;
+  width:140px;
+  align-items:center;
+  justify-content: space-between;
+}
+
+#id28 { background-color: #EECC75; }
+#id12 { background-color: #F09D9D; }
+#id16 { background-color: #CAD297; }
+#id35 { background-color: #A2EEE5; }
+#id80 { background-color: #8EA2EA; }
+#id99 { background-color: #3E0F64; }
+#id18 { background-color: #AA83C8; }
+#id10751 { background-color:#e7b843; }
+#id14 { background-color: #e16c6c; }
+#id36 { background-color: #bbc76a; }
+#id27 { background-color: #6fd9cc; }
+#id10402 { background-color:  #3c54ab; }
+#id9648 { background-color: #2d0f45; }
+#id10749 { background-color: #a58bb8; }
+#id878 { background-color: #e78743; }
+#id10770 { background-color: #d12e2e; }
+#id53 { background-color: #78813c; }
+#id10752 { background-color: #405a56; }
+#id37 { background-color: #2a3455; }
