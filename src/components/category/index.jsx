@@ -1,7 +1,7 @@
 import './style.css';
 
 function Category({category}){
-  console.log(category);
+  // console.log(category);
   return(
   <div className="category__block">
     <p>{category.name}</p>
