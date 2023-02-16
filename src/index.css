@@ -1,0 +1,13 @@
+:root{
+  --primary: #00595D;
+  --dark-primary: #02272D;
+  --secondary: #F6F6F6;
+  --dark-secondary: #E7D789;
+  font-family: 'Sono', sans-serif;
+}
+body{
+  background-color: var(--primary);
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}

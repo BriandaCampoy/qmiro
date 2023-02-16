@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import Home from './routes/home'
+import Movie from './routes/movie'
+import CategoriePage from './routes/categoriePage'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-    </div>
+      <HashRouter>
+        <Routes>
+          <Route path="/movie/2" element={<Movie/>}/>
+          <Route path="/categorie/:id" element={<CategoriePage/>}/>
+          <Route path="/" element={<Home/>}/>
+        </Routes>
+      </HashRouter>
   )
 }
 
