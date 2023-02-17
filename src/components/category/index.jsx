@@ -1,9 +1,13 @@
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 
 function Category({category}){
-  console.log(category);
+  const navigate = useNavigate();
+  function toCategory(){
+    navigate('/category/'+category.id, {state:{category}})
+  }
   return(
-  <div className="category__block">
+  <div className="category__block" onClick={toCategory}>
     <p>{category.name}</p>
     <div className="category__color" id={'id'+category.id}>
     </div>
