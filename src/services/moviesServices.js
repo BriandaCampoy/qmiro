@@ -13,13 +13,23 @@ const api = axios.create({
 
 export default {
   getTrendingMovies: async () => {
-    const {data} = await api('/trending/movie/week');
-    // const data = await result.json();
-    return data;
+    try {
+      const {data} = await api('/trending/movie/week');
+      // const data = await result.json();
+      return data;
+      
+    } catch (error) {
+      console.log(error);
+    }
   },
   getCategories: async () => {
-    const {data} = await api(`/genre/movie/list`);
-    // const data = await result.json();
-    return data;
+    try {
+      const {data} = await api(`/genre/movie/list`);
+      // const data = await result.json();
+      return data;
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
