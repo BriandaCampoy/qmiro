@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './style.css'
+import './style.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -8,6 +9,7 @@ import { Pagination, Navigation, Mousewheel } from 'swiper';
 import { URL_BASE300 } from '../../services/config';
 
 function SlideMovies({ items }) {
+  const navigate = useNavigate();
   return (
     <>
       <Swiper
@@ -26,7 +28,11 @@ function SlideMovies({ items }) {
       >
         {items?.map((item) => (
           <SwiperSlide key={item.id}>
-            <img src={`${URL_BASE300}${item.poster_path}`} alt={item.title} />
+            <img
+              src={`${URL_BASE300}${item.poster_path}`}
+              alt={item.title}
+              onClick={() => {navigate('/movie/'+item.id)}}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

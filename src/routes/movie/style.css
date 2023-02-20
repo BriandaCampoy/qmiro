@@ -1,0 +1,11 @@
+.movie__background{
+  position: absolute;
+  z-index: -1;
+}
+.movieDetails__info{
+  background-color: var(--secondary);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-radius: 10px;
+}

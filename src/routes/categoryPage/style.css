@@ -1,27 +1,9 @@
-:root{
-  --primary: #00595D;
-  --dark-primary: #02272D;
-  --secondary: #F6F6F6;
-  --dark-secondary: #E7D789;
-  font-family: 'Sono', sans-serif;
-}
-body{
-  background-color: var(--primary);
-  margin: 0px;
-  padding: 0px 0px 30px 0;
-  box-sizing: border-box;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-img{
-  border-radius: 10px;
-}
-.movies__conteiner{
+.movies_category_conteiner{
   /* display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center; */
-  max-width: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 15rem));
   grid-auto-rows: minmax(100px, auto);
@@ -32,7 +14,7 @@ img{
   align-items: center;
   justify-items: center;
 }
-.movies__conteiner img{
+.movies_category_conteiner img{
   /* width: 30vw; */
   max-width: 15rem;
   margin: 0 0 10px 0;

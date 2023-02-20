@@ -9,7 +9,7 @@ function App() {
   return (
       <HashRouter>
         <Routes>
-          <Route path="/movie/2" element={<Movie/>}/>
+          <Route path="/movie/:id" element={<Movie/>}/>
           <Route path="/category/:id" element={<CategoryPage/>}/>
           <Route path="/" element={<Home/>}/>
         </Routes>
