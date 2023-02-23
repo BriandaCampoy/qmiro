@@ -1,7 +1,7 @@
-import {api} from './config'
+import { api } from './config';
 
 export default {
-  getTrendingMovies: async () => {
+  getTrending: async (page, media) => {
     // try {
     //   const res = await fetch(`${URL_API}/trending/movie/week?api_key=${API_KEY}`)
     //   const data = await res.json()
@@ -10,11 +10,15 @@ export default {
     //   console.error(error)
     // }
     try {
-      const {data} = await api('/trending/movie/week');
+      const { data } = await api(`/trending/${media}/week`, {
+        params: {
+          page: page
+        }
+      });
       // const data = await result.json();
       // console.log(data);
+      // console.log(data);
       return data;
-      
     } catch (error) {
       console.log(error);
     }
@@ -28,44 +32,106 @@ export default {
     //   console.error(error)
     // }
     try {
-      const {data} = await api(`/genre/movie/list`);
+      const { data } = await api(`/genre/movie/list`);
       // const data = await result.json();
       return data;
-      
     } catch (error) {
       console.log(error);
     }
   },
-  getCategoryById: async (idCategory)=>{
-
-  },
-  getMovieById: async (idMovie)=>{
-    const {data} = await api(`/movie/${idMovie}`);
-    return data;
-  },
-  getMoviesByCategory: async (idCategory)=>{
+  getCategoryById: async (idCategory) => {
     try {
-      const {data} = await api(`/discover/movie`,
-      {params:{
-        with_genres:idCategory
-      },
-    });
-      return data;
+      const { data } = await api(`/genre/movie/list`);
+      const category = data.genres.find(
+        (category) => category.id == idCategory
+      );
+      return category;
+    } catch (error) {
+      // console.log(error);
+    }
+  },
+
+  getMediaById: async (media, idMedia) => {
+    const { data } = await api(`/${media}/${idMedia}`);
+    const recommendations = await (
+      await api(`/${media}/${idMedia}/recommendations`)
+    ).data.results;
+    const movie = {
+      data,
+      recommendations
+    };
+    return movie;
+  },
+  getMediaByCategory: async (idCategory, page) => {
+    try {
+      const dataMovies = await api(`/discover/movie`, {
+        params: {
+          with_genres: idCategory,
+          page: page
+        }
+      });
+      const dataTV = await api(`/discover/tv`, {
+        params: {
+          with_genres: idCategory,
+          page: page
+        }
+      });
+      dataMovies.data.results.map(data => data['mediaType']='movie')
+      dataTV.data.results.map(data => data['mediaType']='tv')
+      let searchedMedia = dataMovies.data.results.concat(dataTV.data.results);
+      searchedMedia = searchedMedia.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      });
+      return searchedMedia;
     } catch (error) {
       console.log(error);
     }
   },
-  searchMovieBySearch: async(query)=>{
+  searchMediaBySearch: async (query, page) => {
     try {
-      const {data} = await api(`/search/movie`,{
-        params:{
-          query:query,
-        }})
-      return data;
+      const dataMovies = await api(`/search/movie`, {
+        params: {
+          page: page,
+          query: query
+        }
+      });
+      const dataTV = await api(`/search/tv`, {
+        params: {
+          page: page,
+          query: query
+        }
+      });
+      dataMovies.data.results.map(data => data['mediaType']='movie')
+      dataTV.data.results.map(data => data['mediaType']='tv')
+      let searchedMedia = dataMovies.data.results.concat(dataTV.data.results);
+      searchedMedia = searchedMedia.sort(function (a, b) {
+        if (a.title < b.title) {
+          return -1;
+        }
+        if (a.title > b.title) {
+          return 1;
+        }
+        return 0;
+      });
+      return searchedMedia;
     } catch (error) {
-      
+      // console.log(error);
     }
-  },
-
-
+  }
+  // getTrendingSeries: async (page) => {
+  //   try {
+  //     const { data } = await api(`/trending/tv/week`, {
+  //       params: {
+  //         page: page
+  //       }
+  //     });
+  //     return data;
+  //   } catch (error) {}
+  // }
 };

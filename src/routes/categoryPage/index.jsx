@@ -13,9 +13,13 @@ function CategoryPage() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!category) {
+      moviesServices.getCategoryById(id).then((res)=>{
+        setCategory(res)
+      })
     }
-    moviesServices.getMoviesByCategory(id).then((res) => {
-      setMoviesByCategory(res.results);
+    moviesServices.getMediaByCategory(id).then((res) => {
+      setMoviesByCategory(res);
+      window.scroll(0,0)
     });
   }, []);
 
@@ -29,7 +33,7 @@ function CategoryPage() {
       <Category category={category} />
       <div className="categoryPage__movies">
         <div className="movies__conteiner">
-        {moviesByCategory.map((movie) => (
+        {moviesByCategory?.map((movie) => (
           <img src={`${URL_BASE300}${movie.poster_path}`} alt={movie.title} key={movie.id}/>
           ))}
           </div>

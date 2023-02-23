@@ -1,11 +1,31 @@
+.movieDetails{
+  margin:0 auto;
+  height: 100%;
+  padding: 0 0 20px 0;
+}
 .movie__background{
-  position: absolute;
   z-index: -1;
+  width: 100vw;
+  border-radius: 0;
 }
 .movieDetails__info{
   background-color: var(--secondary);
-  width: 100%;
-  position: absolute;
-  bottom: 0;
   border-radius: 10px;
+  padding: 10px 10px 20px 10px;
+  overflow: hidden;
+  transform: translate(0px, -15px);
+  height: 100%;
+  /* width: 100vw; */
+}
+.movie__return{
+  z-index: 10;
+  margin: 10px;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  position:absolute;
+}
+.movieDetails__categories{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

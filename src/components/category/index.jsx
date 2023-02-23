@@ -8,8 +8,8 @@ function Category({category}){
   }
   return(
   <div className="category__block" onClick={toCategory}>
-    <p>{category.name}</p>
-    <div className="category__color" id={'id'+category.id}>
+    <p>{category?.name}</p>
+    <div className="category__color" id={'id'+category?.id}>
     </div>
   </div>)
 }

@@ -8,8 +8,9 @@ import 'swiper/css/scrollbar';
 import { Pagination, Navigation, Mousewheel } from 'swiper';
 import { URL_BASE300 } from '../../services/config';
 
-function SlideMovies({ items }) {
+function SlideMovies({ media, items }) {
   const navigate = useNavigate();
+  
   return (
     <>
       <Swiper
@@ -19,9 +20,9 @@ function SlideMovies({ items }) {
         centeredSlides={true}
         navigation={true}
         loop={true}
-        pagination={{
-          clickable: true
-        }}
+        // pagination={{
+        //   clickable: true
+        // }}
         mousewheel={true}
         modules={[Pagination, Navigation, Mousewheel]}
         className="mySwiper swiper-custom"
@@ -31,7 +32,7 @@ function SlideMovies({ items }) {
             <img
               src={`${URL_BASE300}${item.poster_path}`}
               alt={item.title}
-              onClick={() => {navigate('/movie/'+item.id)}}
+              onClick={() => {navigate(`/${media}/`+item.id)}}
             />
           </SwiperSlide>
         ))}
