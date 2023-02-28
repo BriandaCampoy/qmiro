@@ -32,7 +32,7 @@ function Media() {
       <ArrowBackIosNewIcon className='movie__return' onClick={()=>{navigate(-1)}}/>
       <div className="movieDetails__info">
         <div className="movieDetails__info__head">
-          <h2>{movie?.data?.title}</h2>
+          <h2>{media==='movie'?movie?.data?.title:movie?.data?.name}</h2>
           <div className="movieDetails__info__head__pts">
             {movie?.data?.vote_average} <GradeIcon />
           </div>

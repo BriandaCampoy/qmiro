@@ -1,7 +1,7 @@
 import { api } from './config';
 
 export default {
-  getTrending: async (page, media) => {
+  getTrending: async (media, page=1) => {
     // try {
     //   const res = await fetch(`${URL_API}/trending/movie/week?api_key=${API_KEY}`)
     //   const data = await res.json()
@@ -15,10 +15,14 @@ export default {
           page: page
         }
       });
-      // const data = await result.json();
-      // console.log(data);
-      // console.log(data);
-      return data;
+      const trends = data.results;
+      if((data.page<data.total_pages)||(data.page<data.total_pages)){
+        trends['next']=parseInt(page)+1;
+      }
+      if(page>1){
+        trends['previous']=parseInt(page)-1;
+      }
+      return trends;
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +66,7 @@ export default {
     };
     return movie;
   },
-  getMediaByCategory: async (idCategory, page) => {
+  getMediaByCategory: async (idCategory, page=1) => {
     try {
       const dataMovies = await api(`/discover/movie`, {
         params: {
@@ -88,17 +92,23 @@ export default {
         }
         return 0;
       });
+      if((dataTV.data.page<dataTV.data.total_pages)||(dataMovies.data.page<dataMovies.data.total_pages)){
+        searchedMedia['next']=parseInt(page)+1;
+      }
+      if(page>1){
+        searchedMedia['previous']=parseInt(page)-1;
+      }
       return searchedMedia;
     } catch (error) {
       console.log(error);
     }
   },
-  searchMediaBySearch: async (query, page) => {
+  searchMediaBySearch: async (query, page=1) => {
     try {
       const dataMovies = await api(`/search/movie`, {
         params: {
           page: page,
-          query: query
+          query: query,
         }
       });
       const dataTV = await api(`/search/tv`, {
@@ -119,19 +129,15 @@ export default {
         }
         return 0;
       });
+      if((dataTV.data.page<dataTV.data.total_pages)||(dataMovies.data.page<dataMovies.data.total_pages)){
+        searchedMedia['next']=parseInt(page)+1;
+      }
+      if(page>1){
+        searchedMedia['previous']=parseInt(page)-1;
+      }
       return searchedMedia;
     } catch (error) {
       // console.log(error);
     }
   }
-  // getTrendingSeries: async (page) => {
-  //   try {
-  //     const { data } = await api(`/trending/tv/week`, {
-  //       params: {
-  //         page: page
-  //       }
-  //     });
-  //     return data;
-  //   } catch (error) {}
-  // }
 };

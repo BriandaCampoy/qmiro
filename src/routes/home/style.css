@@ -38,14 +38,6 @@ h1, h2, h3{
   align-items: center;
   justify-content:space-between
 }
-.section__head button{
-  border: none;
-  background-color: var( --dark-secondary);
-  color: var(--dark-primary);
-  padding: 10px;
-  border-radius:10px;
-  cursor: pointer;
-}
 .categories__content{
   display:grid;
   grid-template-columns:  auto auto;
@@ -65,7 +57,8 @@ footer{
   position: fixed;
   bottom: 0;
   right: 0;
-  left: 0
+  left: 0;
+  z-index: 10;
 }
 
 /* Glowing__icon */

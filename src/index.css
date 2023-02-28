@@ -37,3 +37,11 @@ img{
   max-width: 15rem;
   margin: 0 0 10px 0;
 }
+button{
+  border: none;
+  background-color: var( --dark-secondary);
+  color: var(--dark-primary);
+  padding: 10px;
+  border-radius:10px;
+  cursor: pointer;
+}

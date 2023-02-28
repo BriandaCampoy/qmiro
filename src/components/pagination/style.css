@@ -1,0 +1,11 @@
+.controlsBox{
+  display: flex;
+  width: 100%;
+  justify-content:center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.controlsBox button{
+  font-size: 30px;
+}

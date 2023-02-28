@@ -1,69 +1,62 @@
 import './style.css';
 import SearchIcon from '@mui/icons-material/Search';
-import moviesServices from '../../services/moviesServices';
 import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import Trends from '../../components/trends/Trends';
-import OnSearch from '../../components/onSearch/OnSearch';
+import { useLocation, useSearchParams, useNavigate, Link } from 'react-router-dom';
+import Trends from '../../components/trendsSlide';
+import { ListSearch } from '../../components/pagination';
 import Footer from '../../components/footer';
 import CategoriesBox from '../../components/categoriesBox';
-//  import { API_KEY } from '../../services/moviesServices';
 
 function Home() {
-  const [movies, setMovies] = useState([]);
-  const [series, setSeries] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchBar, setSearchBar] = useState(searchParams.get('search') || '');
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    moviesServices.getTrending(1,'movie').then((response) => {
-      setMovies(response.results);
-    });
-    moviesServices.getCategories().then((response) => {
-      setCategories(response.genres);
-    });
-    moviesServices.getTrending(1,'tv').then((response) => {
-      setSeries(response.results);
-    })
-
+    setSearchBar(searchParams.get('search'));
     window.scroll(0, 0);
-    // setSearchParams({search : 'jamas'})
-    // console.log(searchParams.get('search'));
   }, [location]);
 
   function onSearchValueChange(e) {
     setSearchBar(e.target.value.toLowerCase());
   }
-  function throwSearch() {
+  function throwSearch(e) {
+    e.preventDefault();
     setSearchParams({ search: searchBar });
+    navigate(`/1?search=${searchBar}`);
   }
 
   return (
     <div className="home">
       <header>
-        <h1>Qmiro</h1>
+        <Link to="/">
+          <h1>Qmiro</h1>
+        </Link>
         <div className="searchBar__conteiner">
-          <input type="text" value={searchBar} onChange={onSearchValueChange} />
-          <div className="icon__conteiner" onClick={throwSearch}>
-            <SearchIcon fontSize="large" />
-          </div>
+          <form
+            action=""
+            onSubmit={throwSearch}
+            className="searchBar__conteiner"
+          >
+            <input
+              type="text"
+              value={searchBar ? searchBar : ''}
+              onChange={onSearchValueChange}
+            />
+            <button type="submit" className="icon__conteiner">
+              <SearchIcon fontSize="large" />
+            </button>
+          </form>
         </div>
       </header>
       {searchParams.get('search') ? (
-        <OnSearch busqueda={searchParams.get('search')} />
+        <ListSearch />
       ) : (
         <div className="trends-conteiner">
-          <Trends
-            media={movies}
-            mediaType={'movie'}
-          />
-          <Trends
-            media={series}
-            mediaType={'tv'}
-          />
-          <CategoriesBox categories={categories} />
+          <Trends mediaType={'movie'} />
+          <Trends mediaType={'tv'} />
+          <CategoriesBox/>
         </div>
       )}
       <Footer />

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function Category({category}){
   const navigate = useNavigate();
   function toCategory(){
-    navigate('/category/'+category.id, {state:{category}})
+    navigate('/category/'+category.id/1, {state:{category}})
   }
   return(
   <div className="category__block" onClick={toCategory}>
