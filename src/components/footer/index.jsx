@@ -4,7 +4,7 @@ function Footer(){
 
   return(
     <footer>
-    <p>Made by BriandaCampoy</p>
+    <p>Made with ❤ by BriandaCampoy</p>
     <GitHubIcon className="glowing__icon" />
     <LinkedInIcon className="glowing__icon" />
   </footer>

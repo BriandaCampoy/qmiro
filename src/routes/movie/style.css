@@ -1,31 +1,94 @@
-.movieDetails{
-  margin:0 auto;
+.movieDetails {
+  margin: 0 auto;
   height: 100%;
   padding: 0 0 20px 0;
 }
-.movie__background{
+.movie__background {
   z-index: -1;
   width: 100vw;
   border-radius: 0;
 }
-.movieDetails__info{
+.movieDetails__info {
   background-color: var(--secondary);
   border-radius: 10px;
   padding: 10px 10px 20px 10px;
   overflow: hidden;
   transform: translate(0px, -15px);
   height: 100%;
+  padding-bottom: 40px;
   /* width: 100vw; */
 }
-.movie__return{
+.movie__return {
   z-index: 10;
   margin: 10px;
   left: 0;
   top: 0;
   cursor: pointer;
-  position:absolute;
+  position: absolute;
+  width: 150px;
+  -webkit-filter: drop-shadow(0px 0px 10px #ffffff);
+  filter: drop-shadow(0px 0px 10px #ffffff);
 }
-.movieDetails__categories{
+.movieDetails__categories {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.movie__img {
+  display: none;
+}
+
+@media (min-width: 450px) {
+  .movie__background {
+    display: none;
+  }
+  .movie__return{
+    padding:1rem;
+  }
+  .movieDetails {
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 0 20px 0;
+    display: flex;
+  }
+  .movieDetails__info {
+    max-width: 1200px;
+    padding: 0rem 0rem 2rem 0rem;
+  }
+  .movieDetails__info__head {
+    padding: 3rem 3rem 1rem 3rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto 2rem auto auto;
+  }
+  .movie__img {
+    display: unset;
+    grid-column: 2/3;
+    grid-row: 1/4;
+    margin: 1rem;
+  }
+  .movieDetails__info__title{
+    grid-column: 1/2;
+  }
+  .movieDetails__info__head__pts{
+    grid-column:1/2;
+    grid-row: 2/3;
+  }
+  .movieDetails__info__overview{
+    grid-column:1/2;
+    grid-row:3/4;
+  }
+  .movieDetails__categories{
+    grid-column: 1/3;
+    grid-row: 4/5;
+    display: grid;
+    margin: 2rem 2rem 0rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 200px));
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  .movieDetails__similars{
+    margin: 1rem 2rem;
+  }
 }

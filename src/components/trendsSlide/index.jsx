@@ -1,6 +1,6 @@
 import SlideMovies from '../slideMovies';
 import { useEffect, useState } from 'react';
-import moviesServices from '../../services/moviesServices';
+import moviesServices from '../../services/mediaServices';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function TrendsSlide ({mediaType}){

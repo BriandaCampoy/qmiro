@@ -25,6 +25,7 @@ export default {
       return trends;
     } catch (error) {
       console.log(error);
+      return [];
     }
   },
   getCategories: async () => {
@@ -41,6 +42,7 @@ export default {
       return data;
     } catch (error) {
       console.log(error);
+      return [];
     }
   },
   getCategoryById: async (idCategory) => {
@@ -52,19 +54,25 @@ export default {
       return category;
     } catch (error) {
       // console.log(error);
+      return [];
     }
   },
 
   getMediaById: async (media, idMedia) => {
-    const { data } = await api(`/${media}/${idMedia}`);
-    const recommendations = await (
-      await api(`/${media}/${idMedia}/recommendations`)
-    ).data.results;
-    const movie = {
-      data,
-      recommendations
-    };
-    return movie;
+    try {
+      const { data } = await api(`/${media}/${idMedia}`);
+      const recommendations = await (
+        await api(`/${media}/${idMedia}/recommendations`)
+      ).data.results;
+      const movie = {
+        data,
+        recommendations
+      };
+      return movie;
+      
+    } catch (error) {
+      return [];
+    }
   },
   getMediaByCategory: async (idCategory, page=1) => {
     try {
@@ -80,8 +88,8 @@ export default {
           page: page
         }
       });
-      dataMovies.data.results.map(data => data['mediaType']='movie')
-      dataTV.data.results.map(data => data['mediaType']='tv')
+      dataMovies.data.results.map(data => data['media_type']='movie')
+      dataTV.data.results.map(data => data['media_type']='tv')
       let searchedMedia = dataMovies.data.results.concat(dataTV.data.results);
       searchedMedia = searchedMedia.sort(function (a, b) {
         if (a.title < b.title) {
@@ -101,6 +109,7 @@ export default {
       return searchedMedia;
     } catch (error) {
       console.log(error);
+      return [];
     }
   },
   searchMediaBySearch: async (query, page=1) => {
@@ -117,8 +126,8 @@ export default {
           query: query
         }
       });
-      dataMovies.data.results.map(data => data['mediaType']='movie')
-      dataTV.data.results.map(data => data['mediaType']='tv')
+      dataMovies.data.results.map(data => data['media_type']='movie')
+      dataTV.data.results.map(data => data['media_type']='tv')
       let searchedMedia = dataMovies.data.results.concat(dataTV.data.results);
       searchedMedia = searchedMedia.sort(function (a, b) {
         if (a.title < b.title) {
@@ -138,6 +147,7 @@ export default {
       return searchedMedia;
     } catch (error) {
       // console.log(error);
+      return [];
     }
   }
 };

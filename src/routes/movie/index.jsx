@@ -5,8 +5,8 @@ import Category from '../../components/category';
 import SlideMovies from '../../components/slideMovies';
 import './style.css';
 import { useEffect, useState } from 'react';
-import moviesServices from '../../services/moviesServices';
-import { URL_BASE500 } from '../../services/config';
+import moviesServices from '../../services/mediaServices';
+import { URL_BASE500, URL_BASE300 } from '../../services/config';
 import Footer from '../../components/footer';
 
 function Media() {
@@ -16,39 +16,55 @@ function Media() {
   const location = useLocation();
 
   useEffect(() => {
-    moviesServices.getMediaById(media, id)
-    .then((res) => {
-      setMovie(res)
-    })
-    .then(()=>{
-      window.scroll(0,0)
-    });
+    moviesServices
+      .getMediaById(media, id)
+      .then((res) => {
+        setMovie(res);
+      })
+      .then(() => {
+        window.scroll(0, 0);
+      });
   }, [location]);
-
 
   return (
     <div className="movieDetails">
-      <img className='movie__background' src={`${URL_BASE500}${movie?.data?.poster_path}`} alt="" />
-      <ArrowBackIosNewIcon className='movie__return' onClick={()=>{navigate(-1)}}/>
+      <img
+        className="movie__background"
+        src={`${URL_BASE500}${movie?.data?.poster_path}`}
+        alt=""
+      />
+      <ArrowBackIosNewIcon
+        className="movie__return"
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
       <div className="movieDetails__info">
         <div className="movieDetails__info__head">
-          <h2>{media==='movie'?movie?.data?.title:movie?.data?.name}</h2>
+          <h2 className="movieDetails__info__title">
+            {media === 'movie' ? movie?.data?.title : movie?.data?.name}
+          </h2>
           <div className="movieDetails__info__head__pts">
             {movie?.data?.vote_average} <GradeIcon />
           </div>
-          <p>
-           {movie?.data?.overview}
+          <p className="movieDetails__info__overview">
+            {movie?.data?.overview}
           </p>
+          <img
+            className="movie__img"
+            src={`${URL_BASE300}${movie?.data?.poster_path}`}
+            alt=""
+          />
           <div className="movieDetails__categories">
-            {movie?.data?.genres.map((category)=>(
-              <Category category={category} key={category.id}/>
+            {movie?.data?.genres.map((category) => (
+              <Category category={category} key={category.id} />
             ))}
           </div>
         </div>
-        <h2>{media} similares</h2>
-      <SlideMovies media={media} items={movie?.recommendations}/>
+        <h2 className="movieDetails__similars">Similar</h2>
+        <SlideMovies className='slideMedia' media={media} items={movie?.recommendations} />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

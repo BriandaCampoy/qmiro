@@ -19,3 +19,10 @@
   max-width: 15rem;
   margin: 0 0 10px 0;
 }
+
+.categoryPage__header{
+  display:flex;
+  align-items: center;
+  gap: 1rem;
+  margin:1rem;
+}

@@ -1,6 +1,6 @@
 import Category from '../../components/category';
 import { useEffect, useState } from 'react';
-import moviesServices from '../../services/moviesServices';
+import moviesServices from '../../services/mediaServices';
 
 
 function CategoriesBox() {

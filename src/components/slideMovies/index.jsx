@@ -13,6 +13,8 @@ function SlideMovies({ media, items }) {
   
   return (
     <>
+      {items?.length<=0 && 
+      <h3>Nothing to show</h3>}
       <Swiper
         direction={'horizontal'}
         slidesPerView={4}

@@ -4,6 +4,7 @@
   --secondary: #F6F6F6;
   --dark-secondary: #E7D789;
   font-family: 'Sono', sans-serif;
+  box-sizing: border-box;
 }
 body{
   background-color: var(--primary);
