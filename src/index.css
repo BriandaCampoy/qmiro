@@ -46,3 +46,18 @@ button{
   border-radius:10px;
   cursor: pointer;
 }
+.loading{
+  background-color: #d2d2d2;
+  border-radius: 10px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+@keyframes loading-skeleton {
+  0%, 100%{
+    opacity: 100%;
+  }
+  50%{
+    opacity: 40%;
+  }
+  
+}

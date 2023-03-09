@@ -5,11 +5,13 @@ import { ListCategory } from '../../components/pagination';
 import Category from '../../components/category';
 import moviesServices from '../../services/mediaServices';
 import Footer from '../../components/footer';
+import CategorySkeleton from '../../components/category/skeleton'
 import './style.css';
 
 function CategoryPage() {
   const { id } = useParams();
   const [category, setCategory] = useState(useLocation().state?.category);
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
   useEffect(() => {
     if (!category) {
@@ -18,7 +20,11 @@ function CategoryPage() {
       });
     }
   }, []);
-
+  useEffect(()=>{
+    if(category!=undefined) {
+      setLoading(false)
+    }
+  },[category])
   return (
     <div className="categoryPage">
       <div className="categoryPage__header">
@@ -27,7 +33,8 @@ function CategoryPage() {
             navigate('/');
           }}
         />
-        <Category category={category} />
+        {loading && <CategorySkeleton/>}
+        {!loading && <Category category={category} />}
       </div>
       <ListCategory />
       <Footer/>

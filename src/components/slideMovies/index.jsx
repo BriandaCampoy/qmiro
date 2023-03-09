@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './style.css';
 import 'swiper/css';
@@ -6,11 +6,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Pagination, Navigation, Mousewheel } from 'swiper';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { URL_BASE300 } from '../../services/config';
 
 function SlideMovies({ media, items }) {
-  const navigate = useNavigate();
-  
   return (
     <>
       {items?.length<=0 && 
@@ -31,11 +30,13 @@ function SlideMovies({ media, items }) {
       >
         {items?.map((item) => (
           <SwiperSlide key={item.id}>
-            <img
+            <Link to={`/${media}/`+item.id}>
+            <LazyLoadImage
               src={`${URL_BASE300}${item.poster_path}`}
               alt={item.title}
-              onClick={() => {navigate(`/${media}/`+item.id)}}
-            />
+              // onClick={()=>{onClickMedia(media, item.id)}}
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

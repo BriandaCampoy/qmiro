@@ -37,8 +37,32 @@
 .movie__img {
   display: none;
 }
+/*Skeleton*/
+.movieDetails__info__head__grade{
+  display: flex;
+  margin: 10px 0;
+}
+.movie__background--load{
+  z-index: -1;
+  width: 100vw;
+  height: 70vh;
+  border-radius: 0;
+}
+.movieDetails__info__title__load{
+  width: 7rem;
+  height:1.5rem;
+}
+.grade{
+  width:3.5rem;
+  height:1.5rem;
+}
+.movieDetails__info__overview__line{
+  width: 80vw;
+  height: 1.3rem;
+  margin: 5px auto;
+}
 
-@media (min-width: 450px) {
+@media (min-width: 600px) {
   .movie__background {
     display: none;
   }
@@ -49,7 +73,6 @@
     margin: 0 auto;
     height: 100%;
     padding: 0 0 20px 0;
-    display: flex;
   }
   .movieDetails__info {
     max-width: 1200px;
@@ -90,5 +113,21 @@
   }
   .movieDetails__similars{
     margin: 1rem 2rem;
+  }
+  /*Skeleton*/
+  .movie__background--load{
+    display: none;
+  }
+  .movieDetails__info__overview__line{
+    width: 40vw;
+  }
+  .movieDetails__poster{
+    display: unset;
+    grid-column: 2/3;
+    grid-row: 1/4;
+    margin: 1rem;
+    width: 20vw;
+    height: 40vh;
+    max-width: 300px;
   }
 }

@@ -4,6 +4,11 @@
   /* background-color: red; */
   border-radius:10px;
 }
+.category__title{
+  width:6rem;
+  height: 20px;
+  margin: 1em;
+}
 .category__block{
   display:flex;
   width:140px;

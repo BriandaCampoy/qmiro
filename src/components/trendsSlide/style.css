@@ -1,0 +1,22 @@
+
+.section__head__title{
+  width: 6rem;
+  height:1rem;
+}
+.section__head__button{
+  width: 3rem;
+  height: 1rem;
+}
+.movies-conteiner{
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+  justify-content: space-evenly;
+}
+.section__movie{
+  width: 15vw;
+  height: 30vh;
+  max-width: 280px;
+  min-width: 80px;
+  margin: 0 0 10px 0;
+}
