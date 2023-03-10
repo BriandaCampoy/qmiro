@@ -45,7 +45,7 @@ function Pagination({ view }) {
 
   useEffect(() => {
     getMedia();
-    // window.scroll(0, 0);
+    window.scroll(0, 0);
   }, [location]);
 
   function getMedia() {
