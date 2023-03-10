@@ -32,7 +32,7 @@ function TrendsSlide({ mediaType }) {
             <h2>Trends - {mediaType}</h2>
             <button
               onClick={() => {
-                navigate(`/trends/${mediaType}/1`);
+                navigate(`/trends/${mediaType}`);
               }}
             >
               See more

@@ -18,7 +18,7 @@ function Trends() {
         <h3>Trends</h3>
         </div>
       </div>
-      <ListMore />
+      <ListMore/>
       <Footer/>
     </>
   );

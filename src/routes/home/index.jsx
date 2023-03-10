@@ -24,7 +24,7 @@ function Home() {
   function throwSearch(e) {
     e.preventDefault();
     setSearchParams({ search: searchBar });
-    navigate(`/1?search=${searchBar}`);
+    navigate(`/?search=${searchBar}`);
   }
 
   return (
