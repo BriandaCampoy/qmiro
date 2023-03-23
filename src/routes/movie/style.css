@@ -61,6 +61,14 @@
   height: 1.3rem;
   margin: 5px auto;
 }
+.movieDetails__info__like{
+  border: 1px solid black;
+  width: min-content;
+  border-radius: 10px;
+  padding:10px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
 @media (min-width: 600px) {
   .movie__background {

@@ -17,6 +17,7 @@ h1, h2, h3{
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .icon__conteiner{
   color: var(--dark-primary);
@@ -63,6 +64,13 @@ footer{
   right: 0;
   left: 0;
   z-index: 10;
+}
+
+.selectLang{
+  position: absolute;
+  right: 0;
+  padding:10px;
+  border-radius: 10px;
 }
 
 /* Glowing__icon */

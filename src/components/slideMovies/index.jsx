@@ -30,7 +30,7 @@ function SlideMovies({ media, items }) {
       >
         {items?.map((item) => (
           <SwiperSlide key={item.id}>
-            <Link to={`/${media}/`+item.id}>
+            <Link to={`/${media?media:item.media}/`+item.id}>
             <LazyLoadImage
               src={`${URL_BASE300}${item.poster_path}`}
               alt={item.title}

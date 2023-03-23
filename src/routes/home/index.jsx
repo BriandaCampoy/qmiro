@@ -3,15 +3,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams, useNavigate, Link } from 'react-router-dom';
 import Trends from '../../components/trendsSlide';
+import SlideFavorites from '../../components/favorites';
 import { ListSearch } from '../../components/pagination';
 import Footer from '../../components/footer';
 import CategoriesBox from '../../components/categoriesBox';
+import mediaServices from '../../services/mediaServices';
+import { lang } from '../../services/mediaServices';
 
 function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchBar, setSearchBar] = useState(searchParams.get('search') || '');
   const navigate = useNavigate();
   const location = useLocation();
+  const [language, setLang] = useState(lang)
 
   useEffect(() => {
     setSearchBar(searchParams.get('search'));
@@ -23,8 +27,17 @@ function Home() {
   }
   function throwSearch(e) {
     e.preventDefault();
-    setSearchParams({ search: searchBar });
-    navigate(`/1?search=${searchBar}`);
+    if(e.target.search_bar.value){
+      setSearchParams({ search: searchBar });
+      navigate(`/1?search=${searchBar}`);
+    }else{
+      navigate(`/`);
+    }
+  }
+  function changeLang(e){
+    mediaServices.changeLang(e.target.value)
+    setLang(e.target.value)
+    navigate('/')
   }
 
   return (
@@ -41,6 +54,7 @@ function Home() {
           >
             <input
               type="text"
+              name="search_bar"
               value={searchBar ? searchBar : ''}
               onChange={onSearchValueChange}
             />
@@ -48,6 +62,11 @@ function Home() {
               <SearchIcon fontSize="large" />
             </button>
           </form>
+          <select name="lang" id="" className='selectLang' onChange={changeLang} value={language}>
+            <option value="es-Es">Español</option>
+            <option value="en-EN">English</option>
+            <option value="fr-FR">Frances</option>
+          </select>
         </div>
       </header>
       {searchParams.get('search') ? (
@@ -56,6 +75,7 @@ function Home() {
         <div className="trends-conteiner">
           <Trends mediaType={'movie'} />
           <Trends mediaType={'tv'} />
+          <SlideFavorites/>
           <CategoriesBox/>
         </div>
       )}

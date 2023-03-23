@@ -10,6 +10,7 @@ import { URL_BASE500, URL_BASE300 } from '../../services/config';
 import Footer from '../../components/footer';
 import Skeleton from './skeleton';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import useFavorites from '../../services/useFavorites';
 
 function Media() {
   const { id, media } = useParams();
@@ -17,6 +18,8 @@ function Media() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const [favorite, setFavorite] = useState(false);
+  const { saveItem, items, unsaveItem } = useFavorites('favorites_v1', []);
 
   useEffect(() => {
     moviesServices
@@ -33,6 +36,23 @@ function Media() {
       setLoading(false);
     }
   }, [movie]);
+  useEffect(() => {
+    // console.log(items);
+    try {
+      const liked = items?.find((item) => JSON.parse(item).id == id);
+      setFavorite(liked != undefined);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [items]);
+
+  function like() {
+    if (!favorite) {
+      saveItem({ id: id, media: media });
+    } else {
+      unsaveItem({ id: id, media: media });
+    }
+  }
 
   if (loading) {
     return <Skeleton />;
@@ -55,6 +75,10 @@ function Media() {
             <h2 className="movieDetails__info__title">
               {media === 'movie' ? movie?.data?.title : movie?.data?.name}
             </h2>
+            <p className="movieDetails__info__like" onClick={like}>
+              {favorite && '💛'}
+              {!favorite && '🤍'}
+            </p>
             <div className="movieDetails__info__head__pts">
               {movie?.data?.vote_average} <GradeIcon />
             </div>
